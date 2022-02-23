@@ -1,0 +1,31 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+
+vector<int> twoSum(vector<int>& nums, int target){
+	int n = nums.size();
+	for (int i = 0; i < n; ++i){
+		for (int j = i; j < n; ++j){
+			if (nums[i] + nums[j] == target){
+				return{ i, j };
+			}
+		}
+	}
+	return{};
+}
+void print(vector<int> &con){
+	for (int i = 0; i < con.size(); ++i){
+		cout << con[i] << " ";
+	}
+}
+int main(){
+	vector<int > nums;				//定义容器nums
+	for (int i = 0; i < 5; ++i){	//给nums赋初值
+		nums.push_back(i + 2);		//使用push_back()方法给容器nums赋初值
+	}
+	vector<int > con;				//定义第二个容器con，用来保存vector<int> twoSum()函数的结果
+	con=twoSum(nums,9);				//传回结果用con保存
+	print(con);						//打印con
+	system("pause");
+	return 0;
+}
