@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+#include <map>
+using namespace std;
+
+class Solution {
+//private:
+	/*map<char, int> A = {
+		{ 'I', 1 },
+		{ 'V', 5 },
+		{ 'X', 10 },
+		{ 'L', 50 },
+		{ 'C', 100 },
+		{ 'D', 500 },
+		{ 'M', 1000 },
+	};*/
+public:
+	static int romanToInt(string s);
+};
+
+int Solution::romanToInt(string s) {
+	map<char, int> A = {
+		{ 'I', 1 },
+		{ 'V', 5 },
+		{ 'X', 10 },
+		{ 'L', 50 },
+		{ 'C', 100 },
+		{ 'D', 500 },
+		{ 'M', 1000 },
+	};
+	int sum = 0;
+	int n = s.length();
+	for (int i = 0; i<n; ++i){
+		int value = A[s[i]];
+		if (i<n - 1 && value<A[s[i + 1]]){
+			sum -= value;
+		}
+		else{
+			sum += value;
+		}
+	}
+	return sum;
+}
+
+int main(){
+	string str = "LVIII";
+	int con = Solution::romanToInt(str);
+	cout << con << endl;
+	system("pause");
+	return 0;
+}
+
+
+
+
+//将map<char, int> A = {     定义成类Solution的private成员总是会出现非静态成员引用必须与特定对象相对应的错误，所以我直接将其放入romanToInt()函数内部，直接解决了问题
+		{ 'I', 1 },              我也不知道定义成private成员到底应该怎么解决这种问题
+		{ 'V', 5 },              今天又学到了map的使用！！！！
+    { 'X', 10 },
+		{ 'L', 50 },
+		{ 'C', 100 },
+		{ 'D', 500 },
+		{ 'M', 1000 },
+	};
